@@ -11,5 +11,7 @@ dependencies:
   - pip:
       - python-dotenv
       - huggingface_hub
+      - transformers
+      - torch
       - lmppl
-
+      - jieba

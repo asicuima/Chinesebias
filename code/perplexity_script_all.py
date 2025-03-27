@@ -65,7 +65,7 @@ def get_encdec_perplexity(row, i):
 tqdm.pandas()
 
 for filename, template_prefix in datasets:
-    df = pd.read_excel(filename, engine="openpyxl")
+    df = pd.read_csv(filename, on_bad_lines='warn')
     df = df.drop(columns=['Unnamed: 0'], errors='ignore')
     
     for i in range(1, 4):
