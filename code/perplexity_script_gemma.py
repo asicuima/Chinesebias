@@ -18,7 +18,7 @@ else:
     
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-model_name = "google/gemma-7b"
+model_name = "google/gemma-3-4b-it"
 tokenizer = AutoTokenizer.from_pretrained(model_name, token=huggingface_token)
 model = AutoModelForCausalLM.from_pretrained(model_name, token=huggingface_token)
 
@@ -38,7 +38,7 @@ args = parser.parse_args()
 
 # List of dataset filenames and corresponding result suffixes
 datasets = [
-    ('chinese_bias_dataset.xlsx', 'template_')
+    ('data/chinese_bias_dataset.xlsx', 'template_')
 ]
 
 # Initialize the scorer based on model type

@@ -12,8 +12,8 @@ args = parser.parse_args()
 
 # List of dataset filenames and corresponding result suffixes
 datasets = [
-    ('../data/chinese_bias_dataset_noun.csv', 'noun', 'template_n_'),
-    ('../data/chinese_bias_dataset_adjective.csv', 'adjective', 'template_a_')
+    ('data/chinese_bias_dataset_noun.csv', 'noun', 'template_n_'),
+    ('data/chinese_bias_dataset_adjective.csv', 'adjective', 'template_a_')
 ]
 
 # Initialize the scorer based on model type
