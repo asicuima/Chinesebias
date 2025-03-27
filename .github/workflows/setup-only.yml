@@ -22,19 +22,21 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Install dependencies using environment.yml (if exists)
-      if: ${{ exists('environment.yml') }}
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt || true
+    - name: Install dependencies
       shell: bash
-
-    - name: Install dependencies using requirements.txt (fallback)
-      if: ${{ !exists('environment.yml') && exists('requirements.txt') }}
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-      shell: bash
+        echo "📦 Checking for environment.yml or requirements.txt..."
+        if [ -f environment.yml ]; then
+          echo "🔧 Found environment.yml – installing dependencies with pip (from pip section)"
+          python -m pip install --upgrade pip
+          pip install -r <(grep -A 1000 'pip:' environment.yml | tail -n +2 | sed 's/^- //')
+        elif [ -f requirements.txt ]; then
+          echo "📄 Found requirements.txt – installing dependencies"
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+        else
+          echo "⚠️ No environment.yml or requirements.txt found."
+        fi
 
     - name: Confirm environment is ready
-      run: echo "✅ Environment set up complete on ${{ matrix.os }}"
+      run: echo "✅ Environment setup complete on ${{ matrix.os }}"
