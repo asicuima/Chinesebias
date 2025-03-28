@@ -18,7 +18,7 @@ else:
     
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-model_name = "google/gemma-3-4b-it"
+model_name = "google/gemma-3-4b-pt"
 tokenizer = AutoTokenizer.from_pretrained(model_name, token=huggingface_token)
 model = AutoModelForCausalLM.from_pretrained(model_name, token=huggingface_token)
 
